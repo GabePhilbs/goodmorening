@@ -20,21 +20,36 @@ var alarmOn = true;
 //check if date variables are being retrieved
 //console.log(currentHour);
 //console.log(currentMinutes);
+function runAlarm(h,m){
+
+	while (alarmOn == true) {
+
+		//get date
+		var date = new Date();
+
+		//set var for minutes and for hours
+		var currentHour = date.getHours();
+		var currentMinutes = date.getMinutes();
 
 
-while (alarmOn == true) {
 
-	//get date
-	var date = new Date();
+		if(currentHour == h && currentMinutes == m){
+			console.log("ring ring ring");
+			alarmOn = false;
+		}
+	};
 
-	//set var for minutes and for hours
-	var currentHour = date.getHours();
-	var currentMinutes = date.getMinutes();
-
-
-
-	if(currentHour == alarmHour && currentMinutes == alarmminutes){
-		console.log("ring ring ring");
-		alarmOn = false;
-	}
 };
+
+
+
+
+runAlarm(alarmHour, alarmminutes);
+
+
+
+
+
+
+
+
