@@ -12,7 +12,10 @@ var alarmminutes = 34;
 var alarmOn = true;
 
 
-
+function ringAlarm(){
+	console.log("ring ring ring");
+	alarmOn = false;
+}
 
 
 
@@ -34,8 +37,8 @@ function runAlarm(h,m){
 
 
 		if(currentHour == h && currentMinutes == m){
-			console.log("ring ring ring");
-			alarmOn = false;
+			
+			ringAlarm();
 		}
 	};
 
