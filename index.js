@@ -1,20 +1,39 @@
 
 
+
+
 //make sure script is running
 
 console.log("goodmorening running");
 
 
-//user defined variables
 
+//led variables
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+var LED = new Gpio(23, 'out'); //use GPIO pin 4, and specify that it is output
+
+
+
+
+
+//user defined variables
 var alarmHour = 2;
 var alarmminutes = 34;
 var alarmOn = true;
 
 
+function turnAlarmOff(){
+	alarmOn = false;
+	//turn on green led off
+	if (LED.readSync() === 1) { //check the pin state, if the state is 0 (or off)
+    LED.writeSync(0);
+	};
+};
+
 function ringAlarm(){
 	console.log("ring ring ring");
-	alarmOn = false;
+	turnAlarmOff();
+	;
 }
 
 
@@ -24,6 +43,11 @@ function ringAlarm(){
 //console.log(currentHour);
 //console.log(currentMinutes);
 function runAlarm(h,m){
+
+	//turn on green led on
+	if (LED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
+    LED.writeSync(1);
+	}
 
 	while (alarmOn == true) {
 
