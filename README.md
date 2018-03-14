@@ -41,7 +41,7 @@ Building:
 	
 	Curtains:
 
-		Hook An electric engine up
+		connect stepper motor to circuit board, and use conned the board to rasp pi 
 
 		Control the engine
 
@@ -58,7 +58,7 @@ Building:
 
 		Same as curtains but:
 
-			A solenoidinstead of a motor 
+			A solenoid instead of a motor 
 
 			attach solenoid to coffe maker
 
@@ -67,6 +67,7 @@ Building:
 	Music: 
 
 		Start playing music from an spotify in speakers attached to the raspberry pi
+		Alternative: play local file
 
 
 Make a video with a demo  of the whole thing working
