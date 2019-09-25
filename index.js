@@ -9,10 +9,13 @@
 console.log("goodmorening running");
 
 
-//led variables
+//GPIO variables
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-var greenLED = new Gpio(14, 'out'); //use GPIO pin 4, and specify that it is output
-var blueLED = new Gpio(15, 'out'); //use GPIO pin 4, and specify that it is output
+var greenLED = new Gpio(14, 'out'); //use GPIO pin 14, and specify that it is output
+var blueLED = new Gpio(15, 'out'); //use GPIO pin 15, and specify that it is output
+var powerSwitch = new Gpio(20, 'out'); //use GPIO pin 21, and specify that it is output, controlls iotRelay
+
+
 
 
 //global variables
@@ -160,6 +163,19 @@ function blueLEDOff(){
 
 
 
+//functions for iotRelay
+function powerSwitchOn(){
+	if (powerSwitch.readSync() === 0) { //check the pin state, if the state is 0 (or off)
+    powerSwitch.writeSync(1);
+	}
+}
+
+function powerSwitchOff(){
+	if (powerSwitch.readSync() === 1) { 
+    powerSwitch.writeSync(0);
+	}
+}
+
 //Function for closing blinds 
 function closeBlinds() {
 
@@ -172,6 +188,9 @@ function openBlinds() {
 
 //Function for making coffee
 function makeCoffee() {
+	powerSwitchOn();
+	setTimeout(powerSwitchOff, 600000);
+	
 
 };
 
@@ -189,13 +208,13 @@ function playSong() {
 
 
 //the function that brings everything together
-function mainFunction)(){
+function mainFunction(){
 
 
 	//function variables
 	var end = false;
-	var alarmHour = 18;
-	var alarmMinutes = 56;
+	var alarmHour = 22;
+	var alarmMinutes = 51;
 	var validInput =false;
 
 
@@ -210,7 +229,7 @@ function mainFunction)(){
 			validInput =true;
 
 			//display message saying the alarm is on
-			console.log("The alarm is set for " + alarmHour ":" + alarmMinutes);
+			console.log("The alarm is set for " + alarmHour + ":" + alarmMinutes);
 
 		} else {console.log("Invalid input")}
 	}
